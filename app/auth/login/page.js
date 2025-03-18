@@ -46,7 +46,7 @@ export default function LoginPage() {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">Iniciar Sesión</button>
+        <button type="submit" className="btn btn-custom-yellow">Iniciar Sesión</button>
       </form>
       <p>
         ¿No tienes cuenta? <a href="/auth/register">HelpDesk</a>
