@@ -48,6 +48,20 @@ aside {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
+
+  .card-img-top {
+    max-height: 200px; /* Limita la altura de la imagen */
+    object-fit: cover; /* Asegura que la imagen se recorte correctamente */
+  }
+  
+
+  .task-img {
+    max-height: 200px;
+    object-fit: cover;
+  }
+  
+
+
   .btn-primary {
     background-color: var(--color-primario);
     border-color: var(--color-primario);
