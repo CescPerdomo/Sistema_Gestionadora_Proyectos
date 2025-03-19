@@ -1,9 +1,7 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { getProjects } from "@/services/api";
 import Card from "@/components/Card";
-import Table from "@/components/Table"; //se importara si es que llegara a usar solo se declara
 
 export default function ProyectosPage() {
   const [projects, setProjects] = useState([]);
@@ -11,15 +9,10 @@ export default function ProyectosPage() {
 
   useEffect(() => {
     getProjects()
-      .then((data) => {
-        setProjects(data);
-      })
-      .catch((err) => {
-        setError(err.message || "Error al cargar los proyectos");
-      });
+      .then((data) => setProjects(data))
+      .catch((err) => setError(err.message || "Error al cargar los proyectos"));
   }, []);
 
-  // Manejo de error, auque opcional
   if (error) {
     return (
       <div className="container">
@@ -29,7 +22,6 @@ export default function ProyectosPage() {
     );
   }
 
-  // Manejo de estado de carga
   if (projects.length === 0) {
     return (
       <div className="container">
@@ -38,19 +30,6 @@ export default function ProyectosPage() {
       </div>
     );
   }
-
-// se Define las columnas de la tabla, si se llegaran a usar
-const columns = ["ID", "Nombre", "Descripción"];
-
-// Función para renderizar cada fila de la tabla en caso de usarla 
-const renderRow = (proyecto) => (
-  <>
-    <td>{proyecto.id}</td>
-    <td>{proyecto.name}</td>
-    <td>{proyecto.description}</td>
-  </>
-);
-
 
   return (
     <div className="container">
@@ -64,7 +43,7 @@ const renderRow = (proyecto) => (
               image={p.image}
               footer={
                 <button className="btn btn-custom-teal w-100">
-                  Ver detalles
+                  Ver disponibilidad
                 </button>
               }
             />
@@ -74,3 +53,4 @@ const renderRow = (proyecto) => (
     </div>
   );
 }
+

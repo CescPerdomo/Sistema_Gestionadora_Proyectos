@@ -1,18 +1,27 @@
 // services/api.js Api temporal mientras se desarrolla la API real 
 export function getProjects() {
-    return Promise.resolve([
-      { id: 1, name: "Iniciativa 1", description: "Actividad 1.1" },
-      { id: 2, name: "Iniciativa 2", description: "Actividad 2.1" },
-      { id: 3, name: "Iniciativa 3", description: "Actividad 3.1" },
-      { id: 4, name: "Iniciativa 4", description: "Actividad 4.1" },
-      { id: 5, name: "Iniciativa 5", description: "Actividad 5.1" },
-      { id: 6, name: "Iniciativa 6", description: "Actividad 6.1" },
-      { id: 7, name: "Iniciativa 7", description: "Actividad 7.1" },
-      { id: 8, name: "Iniciativa 8", description: "Actividad 8.1" },
-      { id: 9, name: "Iniciativa 9", description: "Actividad 9.1" },
-      { id: 10, name: "Iniciativa 10", description: "Actividad 10.1" },
-    ]);
-  }
+  return Promise.resolve([
+    {
+      id: 1,
+      name: "Proyecto 1",
+      description: "Descripción del proyecto.",
+      image: "../img/proyecto1.jpg"  // Asegúrate de que la ruta y nombre sean correctos
+    },
+    {
+      id: 2,
+      name: "Proyecto 2",
+      description: "Descripción del proyecto.",
+      image: "../img/proyecto2.jpg"
+    },
+    {
+      id: 3,
+      name: "Proyecto 3",
+      description: "Descripción del proyecto.",
+      image: "../img/proyecto3.jpg"
+    }
+  ]);
+}
+
   
 
 // Función que simula obtener una lista de tareas
