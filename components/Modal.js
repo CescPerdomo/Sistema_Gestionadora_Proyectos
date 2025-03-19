@@ -1,7 +1,7 @@
 "use client";
 
 export default function Modal({ show, title, children, onClose, onConfirm }) {
-  if (!show) return null; // Si no se debe mostrar, no va a renderizar nada
+  if (!show) return null; // Si show es false, no va a renderizar nada
 
   return (
     <div

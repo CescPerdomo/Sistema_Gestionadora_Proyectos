@@ -6,6 +6,7 @@ export default function Card({ title, description, image, footer }) {
       {image && (
         <img src={image} className="card-img-top" alt={title} />
       )}
+      
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
         {description && (
