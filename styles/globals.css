@@ -100,3 +100,10 @@ aside {
 .form-control {
   border-radius: 9999px; /* Muy redondeado */
 }
+
+/* estilos para tareas */
+.tareas-container {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}

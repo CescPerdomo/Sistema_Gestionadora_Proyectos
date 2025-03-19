@@ -18,12 +18,23 @@ export function getProjects() {
 // Función que simula obtener una lista de tareas
 export function getTasks() {
   return Promise.resolve([
-    { id: 1, title: "Diseñar UI", status: "pendiente" },
-    { id: 2, title: "Implementar login", status: "en progreso" },
-    { id: 3, title: "Implementar validaciones", status: "en curso" },
-    { id: 4, title: "Registro de Usuarios admin", status: "finalizado" },
-    { id: 5, title: "Implementar crud", status: "finalizado" },
-    { id: 6, title: "Solicitud de presupuesto", status: "en curso" }
-
+    {
+      id: 1,
+      title: "Diseñar interfaz",
+      description: "Crear el diseño visual de la página de tareas.",
+      image: "../img/tarea1.jpg"
+    },
+    {
+      id: 2,
+      title: "Implementar validaciones",
+      description: "Agregar validaciones en los formularios de tareas.",
+      image: "../img/tarea2.jpg"
+    },
+    {
+      id: 3,
+      title: "Feedback",
+      description: "Revisar comentarios de usuarios y ajustar el diseño.",
+      image: "../img/tarea3.jpg"
+    }
   ]);
 }
