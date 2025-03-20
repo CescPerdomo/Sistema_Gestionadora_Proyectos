@@ -8,17 +8,24 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
   const login = async (email, password) => {
-    // Simula autenticación exitosa: por ejemplo, si el correo es "soporteusuario@udbproyectos.com" y la contraseña "1234"
-    if (email === "soporteusuario@udbproyectos.com" && password === "1234") {
-      setUser({ email, username: "SoporteUsuario", role: "admin" });
+    // Simulación simple: según el email asignamos un rol.
+    if (email === "admin@udbproyectos.com" && password === "1234") {
+      setUser({ id: 1, username: "Administrador", email, role: "admin" });
       return true;
+    } else if (email === "gerencia1@udbproyectos.com" && password === "1234") {
+      setUser({ id: 2, username: "Gerente1", email, role: "gerente" });
+      return true;
+    } else if (email === "miembro1@udbproyectos.com" && password === "1234") {
+      setUser({ id: 3, username: "Miembro1", email, role: "miembro" });
+      return true;
+    } else {
+      return false;
     }
-    return false;
   };
 
   const register = async ({ username, email, password }) => {
-    // Simula registro exitoso sin una validación real
-    setUser({ email, username, role: "miembro" });
+    // Para el registro, asignamos por defecto el rol "miembro"
+    setUser({ id: Date.now(), username, email, role: "miembro" });
     return true;
   };
 
@@ -36,3 +43,4 @@ export function AuthProvider({ children }) {
 export function useAuth() {
   return useContext(AuthContext);
 }
+
