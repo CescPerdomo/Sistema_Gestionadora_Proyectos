@@ -8,7 +8,7 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
   const login = async (email, password) => {
-    // Simulación simple: según el email asignamos un rol.
+    // Simulación simple: según el email se asigna un rol.
     if (email === "admin@udbproyectos.com" && password === "1234") {
       setUser({ id: 1, username: "Administrador", email, role: "admin" });
       return true;
@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
   };
 
   const register = async ({ username, email, password }) => {
-    // Para el registro, asignamos por defecto el rol "miembro"
+    // Para el registro se asigna por defecto el rol por ejemplo "miembro"
     setUser({ id: Date.now(), username, email, role: "miembro" });
     return true;
   };
