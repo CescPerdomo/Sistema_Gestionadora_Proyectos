@@ -47,7 +47,7 @@ export default function Navbar() {
           <div className="d-flex">
             {user ? (
               <>
-                <span className="navbar-text me-3">Buen día, {user.username}</span>
+                <span className="navbar-text me-3">Bienvenido, {user.username}</span>
                 <button
                   className="btn btn-outline-secondary"
                   onClick={logout}>Salir

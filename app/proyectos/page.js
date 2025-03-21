@@ -3,41 +3,44 @@ import { useState, useEffect } from "react";
 import { getProjects } from "@/services/api";
 import Card from "@/components/Card";
 import Modal from "@/components/Modal";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 export default function ProyectosPage() {
-  const [showModal, setShowModal] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
   const [projects, setProjects] = useState([]);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(null);
 
-  // el metodo useEffect para cargar proyectos (mock o reales (alonso))
   useEffect(() => {
     getProjects()
       .then((data) => setProjects(data))
-      .catch((err) => setError(err.message || "Error al cargar los proyectos"));
+      .catch((err) =>
+        setError(err.message || "Error al cargar los proyectos")
+      );
   }, []);
 
-  // Manejo de error
   if (error) {
     return (
-      <div className="container">
-        <h1 className="my-4">Proyectos</h1>
-        <p className="text-danger">Hubo un problema: {error}</p>
-      </div>
+      <ProtectedRoute allowedRoles={[]}>
+        <div className="container">
+          <h1 className="my-4">Proyectos</h1>
+          <p className="text-danger">Hubo un problema: {error}</p>
+        </div>
+      </ProtectedRoute>
     );
   }
 
-  // Estado de carga
   if (projects.length === 0) {
     return (
-      <div className="container">
-        <h1 className="my-4">Proyectos</h1>
-        <p>Cargando proyectos...</p>
-      </div>
+      <ProtectedRoute allowedRoles={[]}>
+        <div className="container">
+          <h1 className="my-4">Proyectos</h1>
+          <p>Cargando proyectos...</p>
+        </div>
+      </ProtectedRoute>
     );
   }
 
-  // Funciones para manejar la apertura y cierre del modal
   const handleOpenModal = (project) => {
     setSelectedProject(project);
     setShowModal(true);
@@ -49,48 +52,40 @@ export default function ProyectosPage() {
   };
 
   return (
-    <div className="container">
-      <h1 className="my-4">Proyectos</h1>
-
-      <div className="row">
-        {projects.map((p) => (
-          <div key={p.id} className="col-md-4 mb-4">
-            <Card
-              title={p.name}
-              description={p.description}
-              image={p.image}
-              footer={
-                //Botón que abre el modal al hacer click
-                <button
-                  className="btn btn-custom-teal w-100"
-                  onClick={() => handleOpenModal(p)}
-                >
-                  Ver disponibilidad
-                </button>
-              }
-            />
-          </div>
-        ))}
+    <ProtectedRoute allowedRoles={[]}>
+      <div className="container">
+        <h1 className="my-4">Proyectos</h1>
+        <div className="row">
+          {projects.map((p) => (
+            <div key={p.id} className="col-md-4 mb-4">
+              <Card
+                title={p.name}
+                description={p.description}
+                image={p.image}
+                footer={
+                  <button
+                    className="btn btn-custom-teal w-100"
+                    onClick={() => handleOpenModal(p)}
+                  >
+                    Ver disponibilidad
+                  </button>
+                }
+              />
+            </div>
+          ))}
+        </div>
+        <Modal show={showModal} title="Disponibilidad" onClose={handleCloseModal}>
+          {selectedProject ? (
+            <p>
+              Ejemplo de disponibilidad para <strong>{selectedProject.name}</strong>.
+            </p>
+          ) : (
+            <p>Cargando información...</p>
+          )}
+        </Modal>
       </div>
-
-      {/* Renderizado del modal si showModal resultad ser true */}
-      <Modal
-        show={showModal}
-        title="Disponibilidad"
-        onClose={handleCloseModal}
-      >
-        {selectedProject ? (
-          <p>
-            Ejemplo de disponibilidad para <strong>{selectedProject.name}</strong>.
-            {/* Esta sección es para mostrar fechas, 
-              número de miembros disponibles, se puede seguir agregando etc. 
-            */}
-          </p>
-        ) : (
-          <p>Cargando información...</p>
-        )}
-      </Modal>
-    </div>
+    </ProtectedRoute>
   );
 }
+
 
