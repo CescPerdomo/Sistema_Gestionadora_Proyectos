@@ -23,6 +23,7 @@ export default function Navbar() {
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto">
+            {/* Rutas públicas */}
             <li className="nav-item">
               <a className="nav-link" href="/dashboard">Dashboard</a>
             </li>
@@ -34,6 +35,13 @@ export default function Navbar() {
             <li className="nav-item">
               <a className="nav-link" href="/tareas">Tareas</a>
             </li>
+
+            {/* Si el usuario es admin, mostramos el enlace de Administración */}
+            {user?.role === "admin" && (
+              <li className="nav-item">
+                
+              </li>
+            )}
           </ul>
 
           <div className="d-flex">
