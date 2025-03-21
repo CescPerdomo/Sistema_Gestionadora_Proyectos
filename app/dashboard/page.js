@@ -1,16 +1,15 @@
 // app/dashboard/page.js
 "use client";
-
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import Link from "next/link";
 
 export default function DashboardPage() {
   const { user } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    // Si no hay usuario, redirige al login
     if (!user) {
       router.push("/auth/login");
     }
@@ -37,12 +36,9 @@ export default function DashboardPage() {
                   <p className="card-text">
                     Crear, editar y eliminar usuarios. Asignar roles y permisos.
                   </p>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => alert("Funcionalidad en construcción: Gestión de Usuarios")}
-                  >
+                  <Link href="/administracion/usuarios" className="btn btn-primary">
                     Gestionar Usuarios
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -54,16 +50,12 @@ export default function DashboardPage() {
                   <p className="card-text">
                     Visualizar reportes de actividad y estadísticas generales.
                   </p>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => alert("Funcionalidad en construcción: Reportes del Sistema")}
-                  >
+                  <Link href="/administracion/reportes" className="btn btn-primary">
                     Ver Reportes
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
-            {/* Puedes agregar más módulos según lo requieras */}
           </div>
         </div>
       )}
@@ -76,4 +68,6 @@ export default function DashboardPage() {
     </div>
   );
 }
+
+
 

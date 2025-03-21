@@ -1,36 +1,46 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
+  // al iniciar sesion se recupera la sesión guardada en localStorage (si es que existe) para navegar entre paginas
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   const login = async (email, password) => {
-    // Simulación simple: según el email se asigna un rol.
+    let newUser = null;
     if (email === "admin@udbproyectos.com" && password === "1234") {
-      setUser({ id: 1, username: "Administrador", email, role: "admin" });
-      return true;
+      newUser = { id: 1, username: "Administrador", email, role: "admin" };
     } else if (email === "gerencia1@udbproyectos.com" && password === "1234") {
-      setUser({ id: 2, username: "Gerente1", email, role: "gerente" });
-      return true;
+      newUser = { id: 2, username: "Gerente1", email, role: "gerente" };
     } else if (email === "miembro1@udbproyectos.com" && password === "1234") {
-      setUser({ id: 3, username: "Miembro1", email, role: "miembro" });
-      return true;
+      newUser = { id: 3, username: "Miembro1", email, role: "miembro" };
     } else {
       return false;
     }
+    setUser(newUser);
+    localStorage.setItem("user", JSON.stringify(newUser));
+    return true;
   };
 
   const register = async ({ username, email, password }) => {
-    // Para el registro se asigna por defecto el rol por ejemplo "miembro"
-    setUser({ id: Date.now(), username, email, role: "miembro" });
+    const newUser = { id: Date.now(), username, email, role: "miembro" };
+    setUser(newUser);
+    localStorage.setItem("user", JSON.stringify(newUser));
     return true;
   };
 
   const logout = () => {
     setUser(null);
+    localStorage.removeItem("user");
   };
 
   return (
@@ -43,4 +53,5 @@ export function AuthProvider({ children }) {
 export function useAuth() {
   return useContext(AuthContext);
 }
+
 

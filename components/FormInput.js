@@ -1,21 +1,18 @@
+// components/FormInput.js
 "use client";
 
 export default function FormInput({
   label,
-  type = "text", //para efecto de pruebas se dejara 'text' pero puede ser 'email' o 'password' 
+  type = "text",
   value,
   onChange,
-  placeholder = "",
-  required = false,
   name,
+  placeholder = "",
+  required = false
 }) {
   return (
     <div className="mb-3">
-      {label && (
-        <label htmlFor={name} className="form-label">
-          {label}
-        </label>
-      )}
+      <label htmlFor={name} className="form-label">{label}</label>
       <input
         type={type}
         className="form-control"
@@ -29,3 +26,4 @@ export default function FormInput({
     </div>
   );
 }
+
