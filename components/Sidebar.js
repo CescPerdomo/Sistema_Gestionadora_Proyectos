@@ -7,13 +7,13 @@ export default function Sidebar() {
       <ul className="nav flex-column">
         <li className="nav-item mb-2">
           <a className="nav-link" href="/dashboard">
-            <i className="bi bi-speedometer2 me-2"></i> {/* Icono de Bootstrap Icons */}Centro de Control</a>
+            <i className="bi bi-speedometer2 me-2"></i> {/* Icono de Bootstrap Icons */}Calendario</a>
         </li>
         <li className="nav-item mb-2">
-          <a className="nav-link" href="/proyectos">Desarrollo de Soluciones</a>
+          <a className="nav-link" href="/proyectos">Grupos de Trabajo</a>
         </li>
         <li className="nav-item mb-2">
-          <a className="nav-link" href="/tareas">Actividades Asignadas</a>
+          <a className="nav-link" href="/tareas">Sitios web de interes</a>
         </li>
       </ul>
     </aside>
