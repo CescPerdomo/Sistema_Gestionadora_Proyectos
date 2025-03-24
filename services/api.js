@@ -20,21 +20,21 @@ export async function getProjects() {
         resolve([
           {
             id: 1,
-            name: "Proyecto Alpha",
-            description: "Descripción del proyecto Alpha.",
-            image: "/img/proyecto-alpha.jpg",
+            name: "Proyecto 1",
+            description: "Descripción del proyecto",
+            image: "../img/proyecto1.jpg",
           },
           {
             id: 2,
-            name: "Proyecto Beta",
-            description: "Descripción del proyecto Beta.",
-            image: "/img/proyecto-beta.jpg",
+            name: "Proyecto 2",
+            description: "Descripción del proyecto",
+            image: "../img/proyecto2.jpg",
           },
           {
             id: 3,
-            name: "Proyecto Gamma",
-            description: "Descripción del proyecto Gamma.",
-            image: "/img/proyecto-gamma.jpg",
+            name: "Proyecto 3",
+            description: "Descripción del proyecto",
+            image: "../img/proyecto3.jpg",
           },
         ]),
       500
