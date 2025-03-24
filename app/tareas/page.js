@@ -4,18 +4,47 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 import Card from "@/components/Card";
 import Modal from "@/components/Modal";
 import { getTasks } from "@/services/api";
+import { useAuth } from "@/context/AuthContext";
+import CreateTaskForm from "@/components/CreateTaskForm";
 
 export default function TareasPage() {
+  const { user } = useAuth();
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   useEffect(() => {
     getTasks()
       .then((data) => setTasks(data))
-      .catch((err) => setError(err.message || "Error al cargar las tareas"));
+      .catch((err) =>
+        setError(err.message || "Error al cargar las tareas")
+      );
   }, []);
+
+  const handleOpenDetailsModal = (task) => {
+    setSelectedTask(task);
+    setShowDetailsModal(true);
+  };
+
+  const handleCloseDetailsModal = () => {
+    setSelectedTask(null);
+    setShowDetailsModal(false);
+  };
+
+  const handleOpenCreateModal = () => {
+    setShowCreateModal(true);
+  };
+
+  const handleCloseCreateModal = () => {
+    setShowCreateModal(false);
+  };
+
+  const handleCreateTask = (newTask) => {
+    setTasks([...tasks, newTask]);
+    handleCloseCreateModal();
+  };
 
   if (error) {
     return (
@@ -39,31 +68,30 @@ export default function TareasPage() {
     );
   }
 
-  const handleOpenModal = (task) => {
-    setSelectedTask(task);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedTask(null);
-    setShowModal(false);
-  };
-
   return (
     <ProtectedRoute allowedRoles={[]}>
       <div className="container">
         <h1 className="my-4">Tareas</h1>
+        
+        {(user?.role === "admin" || user?.role === "gerente") && (
+          <div className="mb-4">
+            <button className="btn btn-custom-yellow" onClick={handleOpenCreateModal}>
+              Crear Tarea
+            </button>
+          </div>
+        )}
+          
         <div className="row">
           {tasks.map((t) => (
             <div key={t.id} className="col-md-4 mb-4">
               <Card
                 title={t.title}
                 description={t.description}
-                image={t.image} // Si las tareas tienen imagen; de lo contrario, omite esta prop
+                image={t.image}
                 footer={
                   <button
                     className="btn btn-custom-teal w-100"
-                    onClick={() => handleOpenModal(t)}
+                    onClick={() => handleOpenDetailsModal(t)}
                   >
                     Ver detalles
                   </button>
@@ -75,9 +103,9 @@ export default function TareasPage() {
 
         {/* Modal para mostrar detalles de la tarea */}
         <Modal
-          show={showModal}
-          title="Detalles de la tarea"
-          onClose={handleCloseModal}
+          show={showDetailsModal}
+          title="Detalles de la Tarea"
+          onClose={handleCloseDetailsModal}
         >
           {selectedTask ? (
             <p>
@@ -87,6 +115,15 @@ export default function TareasPage() {
           ) : (
             <p>Cargando información...</p>
           )}
+        </Modal>
+
+        {/* Modal para crear una nueva tarea */}
+        <Modal
+          show={showCreateModal}
+          title="Crear Tarea"
+          onClose={handleCloseCreateModal}
+        >
+          <CreateTaskForm onCreate={handleCreateTask} onCancel={handleCloseCreateModal} />
         </Modal>
       </div>
     </ProtectedRoute>
