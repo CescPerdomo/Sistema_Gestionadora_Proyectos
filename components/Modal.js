@@ -1,7 +1,8 @@
 "use client";
 
 export default function Modal({ show, title, children, onClose, onConfirm }) {
-  if (!show) return null; // Si show es false, no va a renderizar nada
+  // Si show es false o undefined, no renderiza nada
+  if (!show) return null;
 
   return (
     <div
@@ -12,6 +13,7 @@ export default function Modal({ show, title, children, onClose, onConfirm }) {
     >
       <div className="modal-dialog" role="document">
         <div className="modal-content">
+          {/* Encabezado del modal */}
           <div className="modal-header">
             <h5 className="modal-title">{title}</h5>
             <button
@@ -21,17 +23,26 @@ export default function Modal({ show, title, children, onClose, onConfirm }) {
               onClick={onClose}
             ></button>
           </div>
-          <div className="modal-body">{children}</div>
+
+          {/* Contenido principal */}
+          <div className="modal-body">
+            {children}
+          </div>
+
+          {/* Footer con botones */}
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" onClick={onClose}>
               Cerrar
             </button>
-            <button type="button" className="btn btn-primary" onClick={onConfirm}>
-              Confirmar
-            </button>
+            {onConfirm && (
+              <button type="button" className="btn btn-primary" onClick={onConfirm}>
+                Confirmar
+              </button>
+            )}
           </div>
         </div>
       </div>
     </div>
   );
 }
+
