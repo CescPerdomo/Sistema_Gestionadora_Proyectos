@@ -2,7 +2,7 @@ Sistema de Gestión de Proyectos
 Descripción
 Este proyecto es un sistema de gestión de proyectos y tareas desarrollado con React y Next.js. El frontend permite la autenticación de usuarios, la gestión de proyectos y tareas, la visualización de reportes en tiempo real, un calendario interactivo y un panel de administración con funcionalidades diferenciadas según el rol (administrador, gerente, miembro).
 
-El proyecto se ha desarrollado siguiendo un enfoque de MVP con datos simulados (mock) y se ha preparado para la futura integración de una API REST real.
+El proyecto se ha desarrollado siguiendo un enfoque de MVP con datos simulados y se ha preparado para la futura integración de una API REST real.
 
 app/
 ├─ calendario/
