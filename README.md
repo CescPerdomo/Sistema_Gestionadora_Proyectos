@@ -4,7 +4,7 @@
 
 Este es un proyecto de gestion de proyectos para cual quier actividad o tarea que tengas en mente.
 
-🌐 Demo en Vivo https://sistema-de-gestion-de-proyectos1.vercel.app/
+🌐 Demo en Vivo https://next-track-three-azure.vercel.app/sign-in
 
 📌 Vista Previa
 Captura de Pantalla
@@ -21,6 +21,7 @@ Recomendación: Usa herramientas como Shots.so para crear imágenes atractivas d
 
 🌍 Multiplataforma: Accede desde web, móvil o como PWA.
 
+(Personaliza esta lista con tus features únicas)
 
 🛠️ Tecnologías Clave
 Área	Tecnologías Usadas
@@ -59,11 +60,13 @@ features/
 ├── tasks/        # Lógica de tareas  
 └── analytics/    # Paneles de datos
 📈 Roadmap
-Integración con Google Calendar (Q3 2025)
+Integración con Google Calendar (Q3 2024)
 
-App móvil nativa (Q4 2025)
+App móvil nativa (Q4 2024)
 
 API pública para desarrolladores (2025)
+
+(Incluye tus planes futuros)
 
 🤝 Contribuir
 ¡Agradecemos contribuciones! Por favor:
@@ -78,3 +81,8 @@ Haz push a la rama (git push origin feature/awesome-feature)
 
 Abre un Pull Request
 
+
+✉️ Contacto
+¿Preguntas? Contáctame en:
+📧 tu-email@dominio.com
+🐦 @tu-twitter
